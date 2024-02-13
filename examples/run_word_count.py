@@ -1,17 +1,21 @@
 import click
-
 from compgraph.algorithms import word_count_graph
 
 
-# TODO: cli
-# You can use anything you want. We suggest you to use `click`
-def main() -> None:
-    graph = word_count_graph(input_stream_name="input", text_column='text', count_column='count')
+@click.command()
+@click.option('--input', help='Input file name')
+@click.option('--output', help='Output file name')
+@click.option('--text', default='text', help='Text column name')
+@click.option('--count', default='count', help='Result count column name')
+def main(input: str, output: str, text: str, count: str) -> None:
+    graph = word_count_graph(input_stream_name=input,
+                             text_column=text,
+                             count_column=count,
+                             filemod=True)
 
-    input_filepath = None
-    output_filepath = None
+    output_filepath = output
 
-    result = graph.run(input=lambda: input_filepath)
+    result = graph.run()
     with open(output_filepath, "w") as out:
         for row in result:
             print(row, file=out)
