@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: compgraph
+Version: 1.1.0
+Author: itmo_diS3e
+Author-email: geli1610@yandex.ru
+Requires-Python: >=3.11
+Requires-Dist: dateutils
